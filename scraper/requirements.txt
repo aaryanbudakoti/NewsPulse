@@ -1,0 +1,6 @@
+feedparser==6.0.14
+psycopg2-binary==2.9.13
+python-dotenv==1.2.3
+requests==2.34.2
+scikit-learn==1.9.1
+trafilatura==2.2.0
