@@ -1,5 +1,11 @@
 # News Pulse: Topic-Clustered News Timeline
 
+LIVE LINK : https://news-pulse-lime.vercel.app/
+<br>
+
+
+<img width="1898" height="965" alt="Screenshot 2026-09-24 221758" src="https://github.com/user-attachments/assets/156e61c6-41fb-41a8-ac67-347dc12257fb" />
+
 Ingests BBC, NPR and Guardian RSS feeds, groups articles into story clusters with TF-IDF, and plots each story on a timeline.
 
 ## Structure
