@@ -1,0 +1,97 @@
+:root {
+  --paper: #eef1f6;
+  --ink: #101b3b;
+  --muted: #5a6688;
+  --rule: #cdd4e2;
+  --bbc: #e4372e;
+  --npr: #2f5bea;
+  --guardian: #f0a800;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { background: var(--paper); color: var(--ink); font-size: 16px; line-height: 1.4; }
+button { font: inherit; color: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--npr); outline-offset: 2px; }
+
+.masthead {
+  display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between;
+  gap: 16px 32px; padding: 28px 40px 20px;
+}
+.masthead h1 {
+  margin: 0; font-size: clamp(2rem, 5vw, 3.25rem); font-weight: 800;
+  letter-spacing: -0.03em; line-height: 1;
+}
+.masthead p { margin: 8px 0 0; color: var(--muted); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px;
+  border: 2px solid var(--ink); border-radius: 999px; background: transparent; font-weight: 600;
+}
+.chip[aria-pressed="false"] { border-color: var(--rule); color: var(--muted); }
+.dot { width: 12px; height: 12px; border-radius: 50%; background: var(--c); }
+.chip[aria-pressed="false"] .dot { background: transparent; border: 2px solid currentColor; }
+.chip-count { font-weight: 400; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+.status { padding: 48px 40px; color: var(--muted); max-width: 60ch; }
+.status.error { color: var(--bbc); }
+
+.tl { padding: 0 40px 96px; }
+.axis {
+  position: sticky; top: 0; z-index: 2; height: 44px;
+  background: var(--paper); border-bottom: 2px solid var(--ink);
+}
+.axis-inner, .plot { position: relative; }
+.axis-inner { height: 100%; }
+.tick-label {
+  position: absolute; bottom: 8px; transform: translateX(-50%); white-space: nowrap;
+  font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums;
+}
+.tick-label.day { color: var(--ink); font-weight: 700; }
+.now-tag {
+  position: absolute; top: 3px; transform: translateX(-50%); font-size: 11px; font-weight: 700;
+  background: var(--ink); color: var(--paper); padding: 0 6px; border-radius: 3px;
+}
+
+.gridline { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--rule); pointer-events: none; }
+.gridline.day { background: #9aa5c0; }
+.nowline { position: absolute; top: 0; bottom: 0; border-left: 2px dashed var(--ink); pointer-events: none; }
+
+.row {
+  display: block; position: relative; width: 100%; height: 64px; padding: 0;
+  border: 0; border-bottom: 1px solid var(--rule); background: transparent; text-align: left;
+}
+.row:hover { background: rgba(16, 27, 59, 0.04); }
+.row[aria-pressed="true"] { background: rgba(47, 91, 234, 0.1); }
+.row:hover .row-label { text-decoration: underline; text-underline-offset: 3px; }
+.row-label {
+  position: absolute; top: 10px; max-width: 48%; overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; font-weight: 700; font-size: 15px;
+}
+.row-count { margin-left: 8px; font-weight: 400; font-size: 13px; color: var(--muted); }
+.row-track { position: absolute; left: 0; right: 0; top: 36px; height: 16px; }
+.row-bar { position: absolute; top: 6px; height: 4px; min-width: 4px; border-radius: 2px; background: var(--ink); opacity: 0.3; }
+.row:hover .row-bar, .row[aria-pressed="true"] .row-bar { opacity: 1; }
+.pt {
+  position: absolute; top: 2px; width: 12px; height: 12px; margin-left: -6px;
+  border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2px var(--paper);
+}
+
+@media (max-width: 640px) {
+  .masthead { padding: 20px; }
+  .tl { padding: 0 24px 64px; }
+  .status { padding: 32px 20px; }
+  .row-label { max-width: 70%; }
+}
+
+.tools { display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
+.tools .chips { justify-content: flex-end; }
+.tools-row { display: flex; align-items: center; gap: 14px; }
+.refresh {
+  border: 2px solid var(--ink); background: var(--ink); color: var(--paper);
+  border-radius: 999px; padding: 8px 18px; font-weight: 700;
+}
+.refresh:disabled { opacity: 0.6; cursor: progress; }
+.refresh-note { margin: 0; font-size: 14px; color: var(--muted); min-height: 20px; }
+.refresh-note.error { color: var(--bbc); }
