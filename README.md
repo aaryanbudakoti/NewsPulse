@@ -57,6 +57,7 @@ Ingests BBC, NPR and Guardian RSS feeds, groups articles into story clusters wit
 - **Frontend:** the timeline shows the last 24 hours. Source toggles filter in the browser; the detail drawer calls `/clusters/:id`. Refresh polls job status every 2 seconds.
 
 ## Trade-offs and limitations
+- The deployed Render backend runs Node only; it has no Python runtime, so `POST /ingest/trigger` will fail there. The full pipeline (ingest, extraction, clustering) works end-to-end locally, as shown in the setup steps above.
 - Clusters are rebuilt from scratch on each run, so cluster ids change and story identity is not tracked between runs.
 - Pure TF-IDF cannot match stories with no shared vocabulary; embeddings would do better.
 - The Postgres role used by the backend bypasses RLS. RLS is enabled with no policies, so the public Supabase API cannot read the tables.
